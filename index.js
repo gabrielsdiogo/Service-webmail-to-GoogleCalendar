@@ -66,7 +66,13 @@ app.use(cors())
 
 app.post("/createEvent", function (req, res) {
 
-  CreateEventOnCalendar(req);
+  
+  try {
+    CreateEventOnCalendar(req);
+  } catch (error) {
+    throw error
+  }
+  
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.send(okReturn);
 });
@@ -103,9 +109,7 @@ function CreateEventOnCalendar(req) {
       },
       function (err, event) {
         if (err) {
-          console.log(
-            "There was an error contacting the Calendar service: " + err
-          );
+          throw err
           return;
         }
 
