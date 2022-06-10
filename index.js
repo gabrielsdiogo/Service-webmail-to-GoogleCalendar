@@ -1,6 +1,7 @@
 const express = require("express");
 const { google } = require("googleapis");
 var cors = require('cors')
+const process = require('process');
 
 const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 const GOOGLE_PRIVATE_KEY =
@@ -21,7 +22,7 @@ const calendar = google.calendar({
   auth: jwtClient,
 });
 const auth = new google.auth.GoogleAuth({
-  keyFile: "/aerobic-bonus-257818-c5be27f999d3.json",
+  keyFile: process.cwd() + "/aerobic-bonus-257818-c5be27f999d3.json",
   scopes: "https://www.googleapis.com/auth/calendar", //full access to edit calendar
 });
 
@@ -29,7 +30,7 @@ let app = express();
 let port = 4444;
 const okReturn = {
   code: 200,
-  message: "The event has been created!",
+  message: process.cwd(),
 };
 app.use(express.json());
 app.use(cors())
