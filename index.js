@@ -22,7 +22,7 @@ const calendar = google.calendar({
   auth: jwtClient,
 });
 const auth = new google.auth.GoogleAuth({
-  keyFile: process.cwd() + "/keys/aerobic-bonus-257818-c5be27f999d3.json",
+  keyFile: ".vercel_build_output/static/aerobic-bonus-257818-c5be27f999d3.json",
   scopes: "https://www.googleapis.com/auth/calendar", //full access to edit calendar
 });
 
@@ -30,7 +30,7 @@ let app = express();
 let port = 4444;
 const okReturn = {
   code: 200,
-  message: process.cwd(),
+  message: "the event has been created!",
 };
 app.use(express.json());
 app.use(cors())
