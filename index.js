@@ -24,21 +24,28 @@ const key = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calendar-integration%40aerobic-bonus-257818.iam.gserviceaccount.com"
 }
 
-const jwtClient = new google.auth.JWT(
-  GOOGLE_CLIENT_EMAIL,
-  null,
-  GOOGLE_PRIVATE_KEY,
-  SCOPES
-);
-const calendar = google.calendar({
-  version: "v3",
-  project: GOOGLE_PROJECT_NUMBER,
-  auth: jwtClient,
-});
-const auth = new google.auth.GoogleAuth({
-  keyFile: __dirname + "/aerobic-bonus-257818-c5be27f999d3.json",
-  scopes: "https://www.googleapis.com/auth/calendar", //full access to edit calendar
-});
+try {
+  const jwtClient = new google.auth.JWT(
+    GOOGLE_CLIENT_EMAIL,
+    null,
+    GOOGLE_PRIVATE_KEY,
+    SCOPES
+  );
+  const calendar = google.calendar({
+    version: "v3",
+    project: GOOGLE_PROJECT_NUMBER,
+    auth: jwtClient,
+  });
+  const auth = new google.auth.GoogleAuth({
+    keyFile: __dirname + "/aerobic-bonus-257818-c5be27f999d3.json",
+    scopes: "https://www.googleapis.com/auth/calendar", //full access to edit calendar
+  });
+} catch (error) {
+  throw error
+}
+
+
+
 
 let app = express();
 let port = 4444;
