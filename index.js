@@ -33,7 +33,7 @@ const calendar = google.calendar({
   auth: jwtClient,
 });
 const auth = new google.auth.GoogleAuth({
-  keyFile: __dirname + "\\aerobic-bonus-257818-c5be27f999d3.json",
+  keyFile: __dirname + "/aerobic-bonus-257818-c5be27f999d3.json",
   scopes: "https://www.googleapis.com/auth/calendar", //full access to edit calendar
 });
 
