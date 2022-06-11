@@ -7,6 +7,8 @@ const GOOGLE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0
 const GOOGLE_CLIENT_EMAIL = "calendar-integration@aerobic-bonus-257818.iam.gserviceaccount.com";
 const GOOGLE_PROJECT_NUMBER = "119632006359";
 const GOOGLE_CALENDAR_ID = "killgamerkiller@gmail.com";
+let calendar;
+let auth;
 const okReturn = {
   code: 200,
   message: "the event has been created!",
@@ -17,6 +19,8 @@ if (port == null || port == "") {
   port = 4444;
 }
 
+
+
 try {
   const jwtClient = new google.auth.JWT(
     GOOGLE_CLIENT_EMAIL,
@@ -24,12 +28,12 @@ try {
     GOOGLE_PRIVATE_KEY,
     SCOPES
   );
-  const calendar = google.calendar({
+  calendar = google.calendar({
     version: "v3",
     project: GOOGLE_PROJECT_NUMBER,
     auth: jwtClient,
   });
-  const auth = new google.auth.GoogleAuth({
+  auth = new google.auth.GoogleAuth({
     keyFile: __dirname + "/aerobic-bonus-257818-c5be27f999d3.json",
     scopes: "https://www.googleapis.com/auth/calendar", //full access to edit calendar
   });
