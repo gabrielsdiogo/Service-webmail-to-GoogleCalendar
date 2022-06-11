@@ -7,6 +7,15 @@ const GOOGLE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0
 const GOOGLE_CLIENT_EMAIL = "calendar-integration@aerobic-bonus-257818.iam.gserviceaccount.com";
 const GOOGLE_PROJECT_NUMBER = "119632006359";
 const GOOGLE_CALENDAR_ID = "killgamerkiller@gmail.com";
+const okReturn = {
+  code: 200,
+  message: "the event has been created!",
+};
+let app = express();
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 4444;
+}
 
 try {
   const jwtClient = new google.auth.JWT(
@@ -27,21 +36,6 @@ try {
 } catch (error) {
   throw error
 }
-
-
-
-
-let app = express();
-let port = 4444;
-const okReturn = {
-  code: 200,
-  message: "the event has been created!",
-};
-
-
-
-
-
 
 app.use(express.json());
 app.use(cors())
