@@ -52,7 +52,7 @@ async function create(req) {
     calendar.events.insert(
         {
         auth: a,
-        calendarI: GOOGLE_CALENDAR_ID,
+        calendarId: GOOGLE_CALENDAR_ID,
         resource: event,
         },
         function (error, event) {
