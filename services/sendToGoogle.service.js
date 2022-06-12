@@ -59,7 +59,7 @@ async function create(req, res) {
             if (error) {
                 res.status(500).send(error.message)
             }
-
+            //console.log(event)
             res.status(201).json({code: 201, message: "the event has been created!"})
 
            

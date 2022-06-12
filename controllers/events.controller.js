@@ -4,6 +4,7 @@ async function create(req, res, next) {
     
 
     try {
+        console.log(req.body)
         res.setHeader('Access-Control-Allow-Origin', '*');
         CreateEventOnCalendar.create(req, res)
     } catch (error) {
