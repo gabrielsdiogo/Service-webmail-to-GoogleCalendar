@@ -4,11 +4,9 @@ async function create(req, res, next) {
     
 
     try {
-        let ret = await CreateEventOnCalendar.create(req);
-        if(ret == undefined) throw Error("Error")
-        
+        console.log(req.body)
         res.setHeader('Access-Control-Allow-Origin', '*');
-        res.status(201).json(ret)
+        CreateEventOnCalendar.create(req, res)
     } catch (error) {
         res.status(500).send(error.message)
         next(error)

@@ -5,8 +5,8 @@ const GOOGLE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0
 const GOOGLE_CLIENT_EMAIL = "calendar-integration@aerobic-bonus-257818.iam.gserviceaccount.com";
 const GOOGLE_PROJECT_NUMBER = "119632006359";
 const GOOGLE_CALENDAR_ID = "killgamerkiller@gmail.com";
-
-async function create(req) {
+let status = false;
+async function create(req, res) {
     
     const jwtClient = new google.auth.JWT(
         GOOGLE_CLIENT_EMAIL,
@@ -57,14 +57,16 @@ async function create(req) {
         },
         function (error, event) {
             if (error) {
-                throw error
+                res.status(500).send(error.message)
             }
+            //console.log(event)
+            res.status(201).json({code: 201, message: "the event has been created!"})
 
-            return {code: 201, message: "the event has been created!"}
+           
         }
     );});
    
-        
+    
     
 
 }
