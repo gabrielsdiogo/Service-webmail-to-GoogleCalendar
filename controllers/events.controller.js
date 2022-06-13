@@ -1,16 +1,21 @@
-const CreateEventOnCalendar = require("../services/sendToGoogle.service")
+import {create as createEvent, deleteEvents as deleteEventID} from '../services/sendToGoogle.service.js'
 
-async function create(req, res, next) {
-    
-
+export async function create(req, res, next) {
     try {
-        console.log(req.body)
         res.setHeader('Access-Control-Allow-Origin', '*');
-        CreateEventOnCalendar.create(req, res)
+        createEvent(req, res)
     } catch (error) {
         res.status(500).send(error.message)
         next(error)
     }
 }
 
-module.exports = {create}
+export async function deleteEvents(req, res, next){
+    try {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        deleteEventID(req, res)
+    } catch (error) {
+        res.status(500).send(error.message)
+        next(error)
+    }
+}
