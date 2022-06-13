@@ -1,6 +1,9 @@
-const express = require("express");
-const cors = require('cors')
-const createEventRouter = require('./routes/events.route')
+import express from 'express'
+import cors from 'cors'
+import {router} from './routes/events.route.js'
+import { createTable } from './Database/createTable.js'
+import { openDb } from './Database/actionsDB.js'
+
 
 
 let app = express();
@@ -9,8 +12,12 @@ let port = process.env.PORT || 4444;
 app.use(express.json());
 app.use(cors())
 
+openDb()
+createTable()
 
-app.use('/createEvent', createEventRouter)
+app.use('/createEvent', router)
+
+app.use('/deleteEvent', router)
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
